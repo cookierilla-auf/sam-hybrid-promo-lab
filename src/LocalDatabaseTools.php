@@ -25,6 +25,7 @@ final class LocalDatabaseTools
         $eligible->execute([$campaign]);
         return [
             'customers' => (int) $this->db->query('SELECT COUNT(*) FROM customers')->fetchColumn(),
+            'sample_customers' => $this->db->query('SELECT customer_id,full_name,email,marketing_opt_in FROM customers ORDER BY customer_id LIMIT 5')->fetchAll(),
             'consent' => $this->db->query('SELECT marketing_opt_in,COUNT(*) AS total FROM customers GROUP BY marketing_opt_in')->fetchAll(),
             'campaign' => $campaign,
             'requests' => count($rows),

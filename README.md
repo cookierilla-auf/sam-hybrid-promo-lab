@@ -81,9 +81,12 @@ php diagnostic.php broken
 # Keep the worker running through three visibility intervals and capture retries/DLQ/alarm.
 php diagnostic.php recovery
 php inspect.php CAMP-RECOVERY-20261027
+php diagnostic.php duplicate-recovery # repeat the genuinely completed SKIPPED recovery pair
 ```
 
 Duplicate: duplicate_skipped followed by deleted, without SMTP. Failure: malformed payload must enter the main queue, fail validation, remain undeleted and move automatically to the DLQ. Recovery: CUST-08001 must be SKIPPED for marketing_opt_out and acknowledged without SMTP. Resolve only the identified malformed incident messages after recovery and verify DLQ zero/alarm OK. Never redrive the invalid payload unchanged or purge a queue.
+
+The recovery duplicate reuses the original request ID and completed SKIPPED pair. It proves live terminal-pair suppression without consuming quota. It is distinct from repeating a SENT pair in the fresh 50-email campaign, which must wait until that campaign is genuinely completed.
 
 If no Sandbox quota is available, `$env:LAB_SMTP_DISABLED='1'` enables a diagnostic safety mode that throws on every attempted SMTP send. It can verify opted-out recovery and malformed-message handling; it cannot establish a SENT baseline or a real-email duplicate result. Remove that variable before an authorized full campaign.
 
