@@ -1,0 +1,15 @@
+/vendor/
+/logs/
+/.env
+/.env.*
+!/.env.example
+/.aws/
+/runtime/
+/work/
+*.log
+*.zip
+*.csv
+/data/
+/dumps/
+/tests/.runtime/
+!schema.sql

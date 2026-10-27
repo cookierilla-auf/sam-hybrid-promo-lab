@@ -1,0 +1,11 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [{
+    "Effect": "Allow",
+    "Action": ["sqs:SendMessage", "sqs:ReceiveMessage", "sqs:DeleteMessage", "sqs:GetQueueAttributes", "sqs:GetQueueUrl"],
+    "Resource": [
+      "arn:aws:sqs:ap-southeast-2:408852558600:MarketingEmailQueue-Escoto",
+      "arn:aws:sqs:ap-southeast-2:408852558600:MarketingEmailDLQ-Escoto"
+    ]
+  }]
+}

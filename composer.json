@@ -1,0 +1,19 @@
+{
+  "name": "student/sam-hybrid-promo-lab",
+  "description": "Local PHP/MySQL promotional campaign with Amazon SQS and Mailtrap Sandbox",
+  "type": "project",
+  "license": "proprietary",
+  "require": {
+    "php": "^8.2",
+    "ext-pdo": "*",
+    "ext-pdo_mysql": "*",
+    "ext-openssl": "*",
+    "ext-mbstring": "*",
+    "aws/aws-sdk-php": "^3.337",
+    "phpmailer/phpmailer": "^6.10 || ^7.0",
+    "fakerphp/faker": "^1.24"
+  },
+  "autoload": {"psr-4": {"Lab\\": "src/"}},
+  "scripts": {"test": "php tests/run.php"},
+  "config": {"sort-packages": true}
+}
